@@ -21,3 +21,8 @@ GROUND_HEIGHT = 80
 # Bird physics
 GRAVITY = 0.5
 JUMP_FORCE = -9
+
+# Pipes
+PIPE_WIDTH = 60
+PIPE_GAP = 160        # space between top and bottom pipe
+PIPE_SPEED = 3        # how fast pipes scroll left
