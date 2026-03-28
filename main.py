@@ -1,12 +1,17 @@
 import pygame
 import sys
 from settings import *
+from bird import Bird
 
 # --- INIT ---
 pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption(TITLE)
 clock = pygame.time.Clock()
+
+#--Create Bird --
+
+bird = Bird()
 
 # --- GAME LOOP ---
 running = True
@@ -18,24 +23,31 @@ while running:
             running = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
+                bird.jump()   # spacebar = jump!
+            if event.key == pygame.K_ESPACE:
                 running = False
 
-    # 2. DRAW — paint everything each frame
+    #2.UPDATE
+    bird.update()
+
+    #3. DRAW
     screen.fill(SKY_BLUE)
 
-    # Ground
+    #Ground
     pygame.draw.rect(screen, GROUND_COLOR,
-                     (0, SCREEN_HEIGHT - GROUND_HEIGHT,
-                      SCREEN_WIDTH, GROUND_HEIGHT))
+                    (0,SCREEN_HEIGHT - GROUND_HEIGHT,
+                    SCREEN_WIDTH ,GROUND_HEIGHT))
+
+    
     # Grass strip
     pygame.draw.rect(screen, GRASS_COLOR,
                      (0, SCREEN_HEIGHT - GROUND_HEIGHT,
                       SCREEN_WIDTH, 15))
 
-    # 3. UPDATE DISPLAY
-    pygame.display.flip()
+    bird.draw(screen)
 
-    # 4. LOCK SPEED to 60 FPS
+    # FLIP + TICK 
+    pygame.display.flip()
     clock.tick(FPS)
 
 # --- QUIT ---
