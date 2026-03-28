@@ -14,6 +14,8 @@ DARK_YELLOW = (200, 160, 0)
 ORANGE = (255, 140, 0)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+PIPE_COLOR = (50, 180, 50)      # ← make sure this is here
+PIPE_DARK = (30, 130, 30)  
 
 # Ground
 GROUND_HEIGHT = 80

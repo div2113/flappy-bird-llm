@@ -28,9 +28,9 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
+            if event.key == pygame.K_SPACE:
                 bird.jump()   # spacebar = jump!
-            if event.key == pygame.K_ESPACE:
+            if event.key == pygame.K_ESCAPE:
                 running = False
 
     #2.UPDATE
