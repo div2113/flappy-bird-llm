@@ -7,6 +7,7 @@ from bird import Bird
 from pipes import PipeManager
 from background import Background
 from game_state import *
+from sounds import SoundManager
 
 # --- INIT ---
 pygame.init()
@@ -86,6 +87,7 @@ def reset_game():
 
 bird, pipe_manager, score = reset_game()
 background = Background()
+sounds = SoundManager()
 
 # ─── STATE ────────────────────────────────────────────────
 state       = START
@@ -133,6 +135,7 @@ while running:
                 state = PLAYING
             elif state == PLAYING and event.key == pygame.K_SPACE:
                 bird.jump()
+                sounds.play_flap()
             elif state == GAME_OVER and event.key == pygame.K_SPACE:
                 bird, pipe_manager, score = reset_game()
                 particles.clear()
@@ -177,6 +180,7 @@ while running:
             if not pipe['scored'] and bird.x > pipe['x'] + PIPE_WIDTH:
                 score += 1
                 pipe['scored'] = True
+                sounds.play_score()
                 # Score burst
                 for _ in range(10):
                     particles.append(Particle(
@@ -192,7 +196,11 @@ while running:
                                 PIPE_WIDTH, SCREEN_HEIGHT)
             if bird_rect.colliderect(top_r) or bird_rect.colliderect(bot_r):
                 is_new_best = score > high_score
-                if is_new_best: high_score = score
+                if is_new_best: 
+                    high_score = score
+                    sounds.play_best()
+                else:
+                    sounds.play_hit() 
                 shake_frames = 18
                 # Death explosion
                 for _ in range(40):
@@ -204,7 +212,11 @@ while running:
 
         if bird.y >= SCREEN_HEIGHT - GROUND_HEIGHT - bird.size:
             is_new_best = score > high_score
-            if is_new_best: high_score = score
+            if is_new_best: 
+                high_score = score
+                sounds.play_best()
+            else:
+                sounds.play_hit()
             shake_frames = 18
             for _ in range(40):
                 particles.append(Particle(
