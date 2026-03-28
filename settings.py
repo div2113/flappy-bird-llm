@@ -1,0 +1,14 @@
+# Screen
+SCREEN_WIDTH = 400
+SCREEN_HEIGHT = 600
+FPS = 60
+TITLE = "Flappy Bird"
+
+# Colors
+SKY_BLUE = (135, 206, 235)
+NIGHT_SKY = (15, 15, 40)
+GROUND_COLOR = (90, 60, 30)
+GRASS_COLOR = (60, 140, 60)
+
+# Ground
+GROUND_HEIGHT = 80
