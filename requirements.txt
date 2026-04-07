@@ -1,0 +1,6 @@
+pygame
+numpy
+django
+mysqlclient          
+djangorestframework
+django-cors-headers
